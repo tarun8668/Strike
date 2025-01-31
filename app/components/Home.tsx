@@ -1,9 +1,6 @@
-// app/components/Home.tsx
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, Trash, PlusCircle } from "lucide-react";
 
@@ -13,8 +10,19 @@ type HomeProps = {
 };
 
 const Home: React.FC<HomeProps> = ({ user, onLogout }) => {
-  const [tasks, setTasks] = useState<{ text: string; completed: boolean }[]>([]);
+  // Load tasks from localStorage, or default to an empty array if not available
+  const loadTasksFromLocalStorage = () => {
+    const storedTasks = localStorage.getItem("tasks");
+    return storedTasks ? JSON.parse(storedTasks) : [];
+  };
+
+  const [tasks, setTasks] = useState<{ text: string; completed: boolean }[]>(loadTasksFromLocalStorage());
   const [input, setInput] = useState<string>("");
+
+  // Save tasks to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   const addTask = () => {
     if (input.trim()) {
@@ -44,7 +52,7 @@ const Home: React.FC<HomeProps> = ({ user, onLogout }) => {
       >
         {/* SVG Icon for Logout */}
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6"> 
-        <path  d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /> 
+          <path d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /> 
         </svg>
       </button>
 
