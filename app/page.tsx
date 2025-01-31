@@ -1,8 +1,9 @@
-export default function Home() {
-  return (
-    <div>
-      <h1>Strike</h1>
-      <p>Welcome to the Strike app!</p>
-    </div>
-  );
-}
+// app/page.tsx
+
+import Home from "./components/Home";
+
+const Page: React.FC = () => {
+  return <Home />;
+};
+
+export default Page;
