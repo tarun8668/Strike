@@ -32,7 +32,7 @@ const Login: React.FC<Props> = ({ onLogin }) => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.5 }}
         >
-          Sign In
+          Sign Up
         </motion.h1>
         
         <div className="space-y-6">
@@ -68,7 +68,7 @@ const Login: React.FC<Props> = ({ onLogin }) => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8, duration: 0.6 }}
           >
-            Login
+            Sign up
           </motion.button>
         </div>
       </motion.div>
