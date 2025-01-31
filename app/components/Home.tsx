@@ -47,16 +47,6 @@ const Home: React.FC = () => {
         Strike
       </h1>
 
-      <div className="mb-6 text-lg">
-        <p>Welcome, {user.name || user.email}!</p>
-        <button
-          onClick={handleLogout}
-          className="mt-3 bg-gray-700 text-white p-3 rounded-md"
-        >
-          Logout
-        </button>
-      </div>
-
       {/* Task Manager Section */}
       <div className="flex flex-col md:flex-row gap-3 mb-6 w-full max-w-3xl px-4">
         <input
@@ -85,7 +75,7 @@ const Home: React.FC = () => {
               transition={{ duration: 0.3 }}
               className="w-full"
             >
-              <div className="flex flex-col md:flex-row justify-between items-center p-4 mb-3 bg-gray-900 border border-gray-700 w-full rounded-md shadow-lg">
+              <div className="flex flex-col md:flex-row justify-between items-center p-4 mb-2 bg-gray-900 border border-gray-700 w-full rounded-md shadow-lg">
                 <motion.span
                   className={`text-lg text-center md:text-left ${
                     task.completed ? "line-through text-gray-500" : "text-white"

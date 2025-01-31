@@ -35,6 +35,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         ) : (
           <Home user={user} onLogout={handleLogout} /> // Show home page if user is logged in
         )}
+        <footer className="w-full text-center py-4 text-gray-400 mt-6">
+          <p>Copyright © 2025 Tarun</p>
+        </footer>
       </body>
     </html>
   );

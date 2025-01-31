@@ -1,62 +1,77 @@
 // app/components/Login.tsx
 "use client";
-import { useState } from "react";
 
+import { useState } from "react";
+import { motion } from "framer-motion";
 
 type Props = {
   onLogin: (user: { name: string; email: string }) => void;
 };
 
 const Login: React.FC<Props> = ({ onLogin }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [name, setName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    // Simple validation (you can improve this with real logic)
-    if (email && password) {
-      onLogin({ name: "User", email }); // Simulate user login
-    } else {
-      setError("Please fill in all fields.");
+  const handleLogin = () => {
+    if (name && email) {
+      onLogin({ name, email });
     }
   };
 
   return (
-    <div className="min-h-screen bg-black text-white flex justify-center items-center">
-      <div className="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-sm">
-        <h2 className="text-3xl font-bold mb-6 text-center">Login</h2>
-        {error && <div className="text-red-500 text-center mb-4">{error}</div>}
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
-              className="w-full p-3 rounded-md bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-gray-500"
-            />
-          </div>
-          <div>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
-              className="w-full p-3 rounded-md bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-gray-500"
-            />
-          </div>
-          <div>
-            <button
-              type="submit"
-              className="w-full py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all"
-            >
-              Login
-            </button>
-          </div>
-        </form>
-      </div>
+    <div className="min-h-screen bg-black text-white flex items-center justify-center font-mono">
+      <motion.div
+        className="bg-black bg-opacity-80 p-8 rounded-lg w-full max-w-md shadow-lg"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <motion.h1
+          className="text-4xl font-bold text-center mb-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+        >
+          Sign In
+        </motion.h1>
+        
+        <div className="space-y-6">
+          {/* Name Input */}
+          <motion.input
+            type="text"
+            placeholder="Full Name"
+            className="w-full p-4 bg-gray-800 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+          />
+          
+          {/* Email Input */}
+          <motion.input
+            type="email"
+            placeholder="Email"
+            className="w-full p-4 bg-gray-800 text-white border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6, duration: 0.6 }}
+          />
+          
+          {/* Login Button */}
+          <motion.button
+            onClick={handleLogin}
+            className="w-full py-3 bg-white text-black rounded-md font-semibold text-lg hover:bg-gray-300 transition duration-300"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8, duration: 0.6 }}
+          >
+            Login
+          </motion.button>
+        </div>
+      </motion.div>
     </div>
   );
 };
