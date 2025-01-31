@@ -1,4 +1,6 @@
 // app/layout.tsx
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 "use client"; // This is a client-side component
 
 import React, { useState, useEffect } from "react";
